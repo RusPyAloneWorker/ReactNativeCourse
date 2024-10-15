@@ -8,7 +8,7 @@
 ![Button Text](https://github.com/user-attachments/assets/7029bdfe-91b2-480f-88ba-15e3e4891219)
 
 ## Text Input
-На втором табе находится задача **Text Input**
+На втором табе находится задача **Text Input**. Верный логин и пароль: "логин", "пароль" соответственно.
 ![Text Input](https://github.com/user-attachments/assets/8618893f-93f2-4213-8670-8e4a249a0dc6)
 
 ## Custom components
