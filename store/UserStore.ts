@@ -9,22 +9,24 @@ export default class UserStore {
     private userService: UserService;
 
     constructor() {
-        makeAutoObservable(this);
         this.users = new Array<User>();
         this.isLoading = false;
+
+        makeAutoObservable(this);
+
         this.userService = new UserService();
     }
 
     async addUser(record: User): Promise<void> {
+        this.setLoadingState(true);
         this.users.push(record);
+        setTimeout(() => this.setLoadingState(false), 1000);
     }
 
     async getUsers(): Promise<void> {
         this.setLoadingState(true);
-        this.isLoading = true;
         this.setUsers(await this.userService.getUsers())
         setTimeout(() => this.setLoadingState(false), 1000);
-        console.log(this.users);
     }
 
     private setUsers = (users: User[]) => this.users = users;
