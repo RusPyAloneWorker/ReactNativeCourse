@@ -1,7 +1,7 @@
 import React, {FC, useEffect, useState} from "react";
 import {ScrollView, View, Text, Image, Button, TextInput} from "react-native";
 import {useRootStore} from "./base/customUseContext.ts";
-import {observer} from "mobx-react";
+import {observer} from 'mobx-react';
 import styles from "./stylesheets/HomepageStyleSheet.js";
 import User from "./domain/entities/User.ts";
 
