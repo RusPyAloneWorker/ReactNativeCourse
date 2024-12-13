@@ -1,14 +1,16 @@
-import React, {FC, useEffect, useState} from "react";
-import {ScrollView, View, Text, Image, Button, TextInput} from "react-native";
+import React, {useEffect, useRef, useState} from "react";
+import {ScrollView, View, Text, Image, Button, TextInput, Animated, Alert, FlatList} from "react-native";
 import {useRootStore} from "../base/customUseContext.ts";
 import {observer} from 'mobx-react';
 import styles from "../stylesheets/HomepageStyleSheet.js";
 import User from "../domain/entities/User.ts";
+import {Modalize} from "react-native-modalize";
 
 export const HomeScreen = observer(() => {
 	const { userStore } = useRootStore();
 	const [firstName, setFirstName] = useState("");
 	const [lastName, setLastName] = useState("");
+	const modalizeRef = useRef<Modalize>(null);
 
 	useEffect(() => {
 		(async function() {
@@ -21,6 +23,29 @@ export const HomeScreen = observer(() => {
 		await userStore.addUser(user)
 	}
 
+	const onDelete = (user: User) => {
+		Alert.alert('Delete', 'Are you sure you want to delete this user?', [
+			{
+				text: 'No',
+				style: 'cancel',
+			},
+			{text: 'Yes', onPress: async () => await handleDeleteUser(user)},
+		]);
+	}
+
+	const handleDeleteUser: (user: User) => Promise<void> = async (user: User) => {
+		await userStore.removeUser(user);
+	}
+
+	const openModal = () => {
+		modalizeRef.current?.open();
+	};
+
+	// Функция для закрытия модального окна
+	const closeModal = () => {
+		modalizeRef.current?.close();
+	};
+
 	return (
 		<ScrollView>
 			{!userStore.isLoading
@@ -29,8 +54,8 @@ export const HomeScreen = observer(() => {
 						<View style={styles.usersList}>
 							<Text style={styles.textContent}>Users:</Text>
 					        {(userStore.users.map((user, key) =>
-					            <View key={key}>
-						            <UserRow {...user}></UserRow>
+					            <View key={key} style={{display:"flex"}}>
+						            <UserRow user={user} deletable={true} onDelete={onDelete}></UserRow>
 					            </View>
 					        ))}
 						</View>
@@ -48,7 +73,8 @@ export const HomeScreen = observer(() => {
 							</TextInput>
 							<Button title={"Add user"} onPress={handleAddUser}/>
 						</View>
-			        </View>
+						<View style={{marginTop:50}}><Button title={"Open Modal Window"} onPress={openModal}></Button></View>
+					</View>
 				)
 			    : (
 					<View>
@@ -56,11 +82,18 @@ export const HomeScreen = observer(() => {
 			        </View>
 				)
 			}
+			<UserModal modalRef={modalizeRef} users={userStore.users}></UserModal>
 		</ScrollView>
 	)
 });
 
-export const UserRow : FC<User> = (user: User) => {
+interface IUserRowProps {
+	user: User,
+	deletable: boolean,
+	onDelete: ((user: User) => void) | null
+}
+
+export const UserRow = ({user, deletable=false, onDelete=null} : IUserRowProps) => {
 	return (
 		<View style={styles.userRow}>
 			{(user.avatar !== undefined && user.avatar !== null)
@@ -71,7 +104,29 @@ export const UserRow : FC<User> = (user: User) => {
 					</View>
 				)
 			}
-			<Text>Id: {user?.id}, name: {user?.first_name}, last name: {user?.last_name}</Text>
+			<Text>{user?.first_name} {user?.last_name}</Text>
+			{deletable && <Button color={'darkred'} title={"Del"} onPress={() => onDelete?.(user)}></Button>}
 		</View>
 	)
 }
+
+
+const UserModal = ({ modalRef, users }: { modalRef: React.RefObject<Modalize>, users: Array<User> }) => {
+	return (
+		<Modalize
+			ref={modalRef}
+			modalHeight={400}
+			handlePosition="inside">
+			<View style={{margin:20}}>
+				<View style={{display:"flex", alignItems:"center"}}>
+					<Text>Список пользователей</Text>
+				</View>
+				{(users.map((user, key) =>
+					<View key={key} style={{display:"flex"}}>
+						<UserRow user={user} deletable={false} onDelete={null}></UserRow>
+					</View>
+				))}
+			</View>
+		</Modalize>
+	);
+};

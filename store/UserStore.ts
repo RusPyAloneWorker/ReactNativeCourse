@@ -29,12 +29,27 @@ export default class UserStore {
         setTimeout(() => this.setLoadingState(false), 1000);
     }
 
+    async removeUser(record: User): Promise<void> {
+        this.setLoadingState(true);
+        let userToRemove = this.users.filter(user => user.id === record.id);
+        let indexToRemove = this.users.findIndex(user => user.id === record.id);
+        console.log(userToRemove);
+
+        if (indexToRemove !== - 1) {
+            this.users.splice(indexToRemove, 1);
+        }
+        console.log(this.users);
+
+        await this.localRepository.setItems(this.users)
+        setTimeout(() => this.setLoadingState(false), 1000);
+    }
+
     async getUsers(): Promise<void> {
         let users = await this.localRepository.getItems();
         this.setLoadingState(true);
         if (users !== null) {
             this.setUsers(users)
-            this.setLoadingState(true);
+            this.setLoadingState(false);
             return;
         }
 
