@@ -3,11 +3,13 @@ import {View, Text, TextInput, Button, TouchableOpacity, ScrollView} from 'react
 import {Box, BoxPropsType} from "../components/Box.tsx";
 import styles from "../stylesheets/HomepageStyleSheet.js"
 import inputStyles from "../stylesheets/TextInputBlockStyleSheet.js"
+import {useTranslation} from "react-i18next";
 
 export default function BoxesPage()  {
 	const COLOR_BOX_WIDTH = 50;
 	const COLOR_BOX_HEIGHT = 50;
 
+	const {t} = useTranslation("boxesPage");
 	const [boxesProps, setBoxesProps] = useState(Array<BoxPropsType>);
 	const [width, setWidth] = useState(100);
 	const [height, setHeight] = useState(100);
@@ -56,10 +58,10 @@ export default function BoxesPage()  {
 
 			<Text>{errorText}</Text>
 
-			<Text>Ширина</Text>
+			<Text>{t("weight")}</Text>
 			<TextInput style={inputStyles.textInput} keyboardType={"numeric"} onChangeText={text => handleWidthInput(text)} />
 
-			<Text>Высота</Text>
+			<Text>{t("height")}</Text>
 			<TextInput style={inputStyles.textInput} keyboardType={"numeric"} onChangeText={text => handleHeightInput(text)} />
 
 			<View style={{display:"flex", flexDirection:"row", margin:5}}>
@@ -75,8 +77,8 @@ export default function BoxesPage()  {
 			</View>
 
 			<View style={{display:"flex", flexDirection:"row"}}>
-				<Button title={"Добавить"} onPress={handleSubmit}></Button>
-				<Button title={"Очистить"} onPress={()=>setBoxesProps([])}></Button>
+				<Button title={t("addButtonText")} onPress={handleSubmit}></Button>
+				<Button title={t("clearButtonText")} onPress={()=>setBoxesProps([])}></Button>
 			</View>
 		</View>
 	)

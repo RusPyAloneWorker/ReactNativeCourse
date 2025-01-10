@@ -6,6 +6,7 @@ import TextInputBlock from "./TextInputPage.tsx";
 import ButtonsBlock from "./ButtonsPage.tsx";
 import {createNativeStackNavigator} from "@react-navigation/native-stack";
 import BoxesPage from "./BoxesPage.tsx";
+import {useTranslation} from "react-i18next";
 
 const Tab = createBottomTabNavigator();
 const HomeStack = createNativeStackNavigator();
@@ -24,22 +25,28 @@ const HomePage: FC = () => {
 }
 
 function HomeAboutScreen() {
+    const {t} = useTranslation("homePage");
+
     return (
         <View style={styles.centerized}>
-            <Text>О приложении</Text>
+            <Text>{t("homeAbout")}</Text>
         </View>
     );
 }
 
 function HomeScreen() {
+    const {t} = useTranslation("homePage");
+
     return (
         <View style={styles.centerized}>
-            <Text>Домашняя страница</Text>
+            <Text>{t("homeScreen")}</Text>
         </View>
     );
 }
 
 function HomeNavigationScreen() {
+    const {t} = useTranslation("homePage");
+
     return (
         <HomeStack.Navigator>
             <HomeStack.Screen
@@ -47,7 +54,7 @@ function HomeNavigationScreen() {
                 component={HomeScreen}
                 options={({ navigation }) => ({
                     headerTitle: () => null,
-                    title: "Домашняя страница",
+                    title: t("homeScreen"),
                     headerLeft: () => (
                         <Button
                             onPress={() => navigation.navigate('HomeAbout')}
@@ -59,7 +66,7 @@ function HomeNavigationScreen() {
             <HomeStack.Screen
                 name="HomeAbout"
                 component={HomeAboutScreen}
-                options={{ title: 'О приложении' }}
+                options={{ title: t("homeAbout") }}
             />
     </HomeStack.Navigator>)
 }

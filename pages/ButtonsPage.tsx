@@ -1,7 +1,9 @@
 import React, {FC, useState} from "react";
 import {Button, View, Text} from "react-native";
+import {useTranslation} from "react-i18next";
 
 const ButtonsPage: FC  = () => {
+	const {t}= useTranslation("buttonsPage");
 	const [pressedCount, setPressedCount] = useState(0);
 	const handlePress = () => {
 		setPressedCount(pressedCount+1);
@@ -25,19 +27,19 @@ const ButtonsPage: FC  = () => {
 		}}>
 			<Text style={{ margin: 16 }}>
 				{pressedCount > 0
-					? `The button was pressed ${pressedCount} times!`
-					: 'The button isn\'t pressed yet'
+					? t("buttonPress", {value: pressedCount})
+					: t("buttonNotPressed")
 				}
 			</Text>
 			<Button
-				title='Press me'
+				title={t("pressMeButtonText")}
 				onPress={handlePress}
 				disabled={isDisabled()}
 				color={isDisabled() ? "grey" : "blue"}
 			/>
 
 			<Button
-				title='Reset'
+				title={t("resetButtonText")}
 				onPress={resetPressCount}
 			/>
 		</View>

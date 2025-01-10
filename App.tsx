@@ -1,28 +1,29 @@
-import {createNativeStackNavigator} from "@react-navigation/native-stack";
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
 import styles from "./stylesheets/HomepageStyleSheet.js"
 import React from "react";
-import {Image, View} from "react-native";
+import {Button, Image, View} from "react-native";
 import {NavigationContainer} from "@react-navigation/native";
 import HomePage from "./pages/HomePage.tsx";
 import SettingsPage from "./pages/SettingsPage.tsx";
 import ChatPage from "./pages/ChatPage.tsx";
 import NewsPage from "./pages/NewsPage.tsx";
+import langStore from "./lang/LangStore.ts";
+import {useTranslation} from "react-i18next";
 
-const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
 export default function App() {
+    const {i18n} = useTranslation();
+
     return (
         <NavigationContainer>
             <Tab.Navigator
                 screenOptions={({ route }) => ({
                     headerTitle: () => (
-                       <Image
-                           source={require('./assets/logo.webp')}
-                           style={{ width: 60, height: 60, alignItems: 'flex-end' }}
-                           resizeMode="contain"
-                       />
+                       <Button
+                           title={i18n.language}
+                           onPress={langStore.switchLang}
+                       ></Button>
                     ),
                     tabBarActiveTintColor: 'tomato',
                     tabBarInactiveTintColor: 'gray',
