@@ -1,39 +1,38 @@
-import {createNativeStackNavigator} from "@react-navigation/native-stack";
-import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
-import styles from "./stylesheets/HomepageStyleSheet.js"
-import React from "react";
-import {Image, View} from "react-native";
-import {NavigationContainer} from "@react-navigation/native";
-import HomePage from "./pages/HomePage.tsx";
-import SettingsPage from "./pages/SettingsPage.tsx";
-import ChatPage from "./pages/ChatPage.tsx";
-import NewsPage from "./pages/NewsPage.tsx";
+import React, {useContext} from "react";
+import {Button, View} from "react-native";
+import {ThemeContext, ThemeProvider} from "./stylesheets/theme/ThemeProvider.tsx";
+import {useTheme} from "./stylesheets/theme/useTheme.ts";
+import {ThemeTypes} from "./stylesheets/theme/ThemeTypes.tsx";
+import BoxesPage from "./pages/BoxesPage.tsx";
 
-const Stack = createNativeStackNavigator();
-const Tab = createBottomTabNavigator();
 
 export default function App() {
     return (
-        <NavigationContainer>
-            <Tab.Navigator
-                screenOptions={({ route }) => ({
-                    headerTitle: () => (
-                       <Image
-                           source={require('./assets/logo.webp')}
-                           style={{ width: 60, height: 60, alignItems: 'flex-end' }}
-                           resizeMode="contain"
-                       />
-                    ),
-                    tabBarActiveTintColor: 'tomato',
-                    tabBarInactiveTintColor: 'gray',
-                    tabBarIcon: () => null,
-                    headerTitleAlign:"center"
-                })}>
-                    <Tab.Screen name={"Homepage"} component={HomePage} />
-                    <Tab.Screen name={"Settings"} component={SettingsPage} />
-                    <Tab.Screen name={"ChatPage"} component={ChatPage} />
-                    <Tab.Screen name={"NewsPage"} component={NewsPage} />
-            </Tab.Navigator>
-        </NavigationContainer>
+        <ThemeProvider>
+            <BaseApp></BaseApp>
+        </ThemeProvider>
+    )
+}
+
+function BaseApp() {
+    const themeContext = useContext(ThemeContext);
+    const {Colors} = useTheme();
+
+    const handleChangeTheme = () => {
+        let currentTheme = themeContext?.theme;
+
+        if (currentTheme !== undefined) {
+            themeContext?.changeTheme(ThemeTypes.DARK);
+        }
+
+        let newTheme = currentTheme === ThemeTypes.LIGHT ? ThemeTypes.DARK : ThemeTypes.LIGHT;
+        themeContext?.changeTheme(newTheme);
+    }
+
+    return (
+        <View style={{backgroundColor: Colors.backgroundPrimary, height:'100%'}}>
+            <Button color={Colors.accentDefault} title={"Change theme"} onPress={handleChangeTheme}></Button>
+            <BoxesPage></BoxesPage>
+        </View>
     )
 }

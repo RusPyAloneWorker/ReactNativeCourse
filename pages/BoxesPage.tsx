@@ -3,8 +3,11 @@ import {View, Text, TextInput, Button, TouchableOpacity, ScrollView} from 'react
 import {Box, BoxPropsType} from "../components/Box.tsx";
 import styles from "../stylesheets/HomepageStyleSheet.js"
 import inputStyles from "../stylesheets/TextInputBlockStyleSheet.js"
+import {useTheme} from "../stylesheets/theme/useTheme.ts";
 
 export default function BoxesPage()  {
+	const {Colors} = useTheme();
+
 	const COLOR_BOX_WIDTH = 50;
 	const COLOR_BOX_HEIGHT = 50;
 
@@ -54,12 +57,12 @@ export default function BoxesPage()  {
 				</View>
 			</ScrollView>
 
-			<Text>{errorText}</Text>
+			<Text style={{color:Colors.textSecondary, fontFamily: "Playwrite VN Thin"}}>{errorText}</Text>
 
-			<Text>Ширина</Text>
+			<Text style={{color:Colors.textPrimary, fontFamily: "Oswald-Bold"}}>Ширина</Text>
 			<TextInput style={inputStyles.textInput} keyboardType={"numeric"} onChangeText={text => handleWidthInput(text)} />
 
-			<Text>Высота</Text>
+			<Text style={{color:Colors.textPrimary, fontFamily: "Oswald-Bold"}}>Высота</Text>
 			<TextInput style={inputStyles.textInput} keyboardType={"numeric"} onChangeText={text => handleHeightInput(text)} />
 
 			<View style={{display:"flex", flexDirection:"row", margin:5}}>
@@ -75,8 +78,8 @@ export default function BoxesPage()  {
 			</View>
 
 			<View style={{display:"flex", flexDirection:"row"}}>
-				<Button title={"Добавить"} onPress={handleSubmit}></Button>
-				<Button title={"Очистить"} onPress={()=>setBoxesProps([])}></Button>
+				<Button title={"Добавить"} color={Colors.accentDefault} onPress={handleSubmit}></Button>
+				<Button title={"Очистить"} color={Colors.accentDefault} onPress={()=>setBoxesProps([])}></Button>
 			</View>
 		</View>
 	)

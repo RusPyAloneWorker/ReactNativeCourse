@@ -14,6 +14,14 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		7699B88040F8A987B510C191 /* libPods-NativeApp2-NativeApp2Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-NativeApp2-NativeApp2Tests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		4D3C5F8F6BEE4F0B95799CAB /* Oswald-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 20A604C3B3CD42439E3171DF /* Oswald-Bold.ttf */; };
+		881556D2FBB045CCB9C7EF79 /* Oswald-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1481A43ECEDD43C6A6866775 /* Oswald-ExtraLight.ttf */; };
+		F3E817B0A0D647018645F4EE /* Oswald-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 11170342BEE04E2DB6613077 /* Oswald-Light.ttf */; };
+		802E0F1DCD3E448081BB86A7 /* Oswald-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FF1083601C694592B3B45A5E /* Oswald-Medium.ttf */; };
+		7967442D787F461DB0BADED3 /* Oswald-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3F5E8FB30E1248B0B6356EE1 /* Oswald-Regular.ttf */; };
+		25B46E26B02749CB9472E8B2 /* Oswald-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DB6BE6797E13431DAB10B55E /* Oswald-SemiBold.ttf */; };
+		518677E1CEBF480BB9338C41 /* PlaywriteVN-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C9BD7DF0EC5F4C8EA91CE1EE /* PlaywriteVN-Regular.ttf */; };
+		D61B0495920342A18971D0F3 /* Playwrite VN Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0A3248CBB458406B8AB66AD9 /* Playwrite VN Thin.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +53,14 @@
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = NativeApp2/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-NativeApp2-NativeApp2Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NativeApp2-NativeApp2Tests.release.xcconfig"; path = "Target Support Files/Pods-NativeApp2-NativeApp2Tests/Pods-NativeApp2-NativeApp2Tests.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		20A604C3B3CD42439E3171DF /* Oswald-Bold.ttf */ = {isa = PBXFileReference; name = "Oswald-Bold.ttf"; path = "../assets/fonts/Oswald-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		1481A43ECEDD43C6A6866775 /* Oswald-ExtraLight.ttf */ = {isa = PBXFileReference; name = "Oswald-ExtraLight.ttf"; path = "../assets/fonts/Oswald-ExtraLight.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		11170342BEE04E2DB6613077 /* Oswald-Light.ttf */ = {isa = PBXFileReference; name = "Oswald-Light.ttf"; path = "../assets/fonts/Oswald-Light.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		FF1083601C694592B3B45A5E /* Oswald-Medium.ttf */ = {isa = PBXFileReference; name = "Oswald-Medium.ttf"; path = "../assets/fonts/Oswald-Medium.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		3F5E8FB30E1248B0B6356EE1 /* Oswald-Regular.ttf */ = {isa = PBXFileReference; name = "Oswald-Regular.ttf"; path = "../assets/fonts/Oswald-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		DB6BE6797E13431DAB10B55E /* Oswald-SemiBold.ttf */ = {isa = PBXFileReference; name = "Oswald-SemiBold.ttf"; path = "../assets/fonts/Oswald-SemiBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		C9BD7DF0EC5F4C8EA91CE1EE /* PlaywriteVN-Regular.ttf */ = {isa = PBXFileReference; name = "PlaywriteVN-Regular.ttf"; path = "../assets/fonts/PlaywriteVN-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		0A3248CBB458406B8AB66AD9 /* Playwrite VN Thin.ttf */ = {isa = PBXFileReference; name = "Playwrite VN Thin.ttf"; path = "../assets/fonts/Playwrite VN Thin.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +140,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				BBD78D7AC51CEA395F1C20DB /* Pods */,
+				7BF4597570B34EADA4349EBE /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -149,6 +166,22 @@
 			);
 			path = Pods;
 			sourceTree = "<group>";
+		};
+		7BF4597570B34EADA4349EBE /* Resources */ = {
+			isa = "PBXGroup";
+			children = (
+				20A604C3B3CD42439E3171DF /* Oswald-Bold.ttf */,
+				1481A43ECEDD43C6A6866775 /* Oswald-ExtraLight.ttf */,
+				11170342BEE04E2DB6613077 /* Oswald-Light.ttf */,
+				FF1083601C694592B3B45A5E /* Oswald-Medium.ttf */,
+				3F5E8FB30E1248B0B6356EE1 /* Oswald-Regular.ttf */,
+				DB6BE6797E13431DAB10B55E /* Oswald-SemiBold.ttf */,
+				C9BD7DF0EC5F4C8EA91CE1EE /* PlaywriteVN-Regular.ttf */,
+				0A3248CBB458406B8AB66AD9 /* Playwrite VN Thin.ttf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+			path = "";
 		};
 /* End PBXGroup section */
 
@@ -245,6 +278,14 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				4D3C5F8F6BEE4F0B95799CAB /* Oswald-Bold.ttf in Resources */,
+				881556D2FBB045CCB9C7EF79 /* Oswald-ExtraLight.ttf in Resources */,
+				F3E817B0A0D647018645F4EE /* Oswald-Light.ttf in Resources */,
+				802E0F1DCD3E448081BB86A7 /* Oswald-Medium.ttf in Resources */,
+				7967442D787F461DB0BADED3 /* Oswald-Regular.ttf in Resources */,
+				25B46E26B02749CB9472E8B2 /* Oswald-SemiBold.ttf in Resources */,
+				518677E1CEBF480BB9338C41 /* PlaywriteVN-Regular.ttf in Resources */,
+				D61B0495920342A18971D0F3 /* Playwrite VN Thin.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
