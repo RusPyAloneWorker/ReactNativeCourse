@@ -1,0 +1,34 @@
+{
+  "boxesPage": {
+    "height": "Height",
+    "weight": "Weight",
+    "addButtonText": "Add",
+    "clearButtonText": "Clear"
+  },
+  "buttonsPage": {
+    "buttonNotPressed": "The button isn't pressed yet",
+    "buttonPress": "The button was pressed {{value}} times!",
+    "pressMeButtonText": "Press me",
+    "resetButtonText": "Reset"
+  },
+  "chatPage": {
+    "chat": "Chat"
+  },
+  "newsPage": {
+    "news": "News"
+  },
+  "settingsPage": {
+    "settings": "Settings"
+  },
+  "textInputPage": {
+    "login": "Login",
+    "password": "Password",
+    "incorrectLoginTextMessage": "Incorrect password or login",
+    "logInButton": "Log in",
+    "welcomeTestMessage": "Welcome"
+  },
+  "homePage": {
+    "homeAbout": "About app",
+    "homeScreen": "Home screen"
+  }
+}

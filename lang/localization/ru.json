@@ -1,0 +1,34 @@
+{
+  "boxesPage": {
+    "height": "Высота",
+    "weight": "Ширина",
+    "addButtonText": "Добавить",
+    "clearButtonText": "Очистить"
+  },
+  "buttonsPage": {
+    "buttonNotPressed": "Кнопка не нажата",
+    "buttonPress": "Кнопка нажата {{value}} раз!",
+    "pressMeButtonText": "Нажми на меня",
+    "resetButtonText": "Обнулить"
+  },
+  "chatPage": {
+    "chat": "Чат"
+  },
+  "newsPage": {
+    "news": "Новости"
+  },
+  "settingsPage": {
+    "settings": "Настройки"
+  },
+  "textInputPage": {
+    "login": "Логин",
+    "password": "Пароль",
+    "incorrectLoginTextMessage": "Неверный пароль или логин",
+    "logInButton": "Войти",
+    "welcomeTestMessage": "Добро Пожаловать!!"
+  },
+  "homePage": {
+    "homeAbout": "О приложении",
+    "homeScreen": "Домашняя страница"
+  }
+}
