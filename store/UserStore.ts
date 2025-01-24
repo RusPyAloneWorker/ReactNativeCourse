@@ -1,46 +1,49 @@
 import { makeAutoObservable } from "mobx";
 import UserService from "../domain/services/UserService.ts";
-import User from "../domain/entities/User.ts";
-import LocalRepository from "../domain/repositories/LocalStorageRepository.ts";
+import User, {UserParams} from "../domain/entities/User.ts";
+import { RealmRepository } from "../domain/repositories/LocalStorageRepository.ts";
+import {RealmClient} from "../infrastructure/RealmClient.ts";
 
 const USER_STORAGE_KEY: string = "Users";
 
 export default class UserStore {
-    users: Array<User>;
+    users: Array<UserParams>;
     isLoading: boolean;
 
     private userService: UserService;
-    private localRepository: LocalRepository<Array<User>>;
+    private localRepository: RealmRepository;
 
     constructor() {
-        this.users = new Array<User>();
+        this.users = new Array<UserParams>();
         this.isLoading = false;
 
         makeAutoObservable(this);
 
         this.userService = new UserService();
-        this.localRepository = new LocalRepository<Array<User>>(USER_STORAGE_KEY);
+        this.localRepository = new RealmRepository(User.UserSchemaName);
     }
 
-    async addUser(record: User): Promise<void> {
+    async addUser(record: UserParams): Promise<void> {
         this.setLoadingState(true);
-        this.users.push(record);
-        await this.localRepository.setItems(this.users)
+        await this.localRepository.setItem(record);
+        await this.getUsers();
         setTimeout(() => this.setLoadingState(false), 1000);
     }
 
     async getUsers(): Promise<void> {
         let users = await this.localRepository.getItems();
         this.setLoadingState(true);
-        if (users !== null) {
-            this.setUsers(users)
-            this.setLoadingState(true);
+
+        if (users.length > 0) {
+            this.setUsers(users);
+            this.setLoadingState(false);
             return;
         }
 
-        this.setLoadingState(true);
-        this.setUsers(await this.userService.getUsers())
-        await this.localRepository.setItems(this.users);
+        let usersParams = await this.userService.getUsers();
+        await this.localRepository.setItems(usersParams);
+        this.setUsers(usersParams)
+
         setTimeout(() => this.setLoadingState(false), 1000);
     }
 
@@ -49,7 +52,7 @@ export default class UserStore {
         await this.getUsers()
     }
 
-    private setUsers = (users: User[]) => this.users = users;
+    private setUsers = (users: UserParams[]) => this.users = users;
 
     private setLoadingState = (flag: boolean) => this.isLoading = flag;
 }

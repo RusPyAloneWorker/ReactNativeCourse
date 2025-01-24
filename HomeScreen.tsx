@@ -3,7 +3,8 @@ import {ScrollView, View, Text, Image, Button, TextInput} from "react-native";
 import {useRootStore} from "./base/customUseContext.ts";
 import {observer} from 'mobx-react';
 import styles from "./stylesheets/HomepageStyleSheet.js";
-import User from "./domain/entities/User.ts";
+import User, {UserParams} from "./domain/entities/User.ts";
+import {RealmClient} from "./infrastructure/RealmClient.ts";
 
 export const HomeScreen = observer(() => {
 	const { userStore } = useRootStore();
@@ -17,9 +18,11 @@ export const HomeScreen = observer(() => {
 	}, []);
 
 	const handleAddUser = async () => {
-		let user = new User({first_name: firstName, last_name: lastName});
+		let user = { id: null, first_name: firstName, last_name: lastName };
 		await userStore.addUser(user)
 	}
+
+	const handleRefreshUsers = async () => await userStore.refreshUsers();
 
 	return (
 		<ScrollView>
@@ -47,6 +50,8 @@ export const HomeScreen = observer(() => {
 								onChangeText={text => setLastName(text)}>
 							</TextInput>
 							<Button title={"Add user"} onPress={handleAddUser}/>
+
+							<Button title={"Refresh users"} onPress={handleRefreshUsers}/>
 						</View>
 			        </View>
 				)
@@ -60,18 +65,18 @@ export const HomeScreen = observer(() => {
 	)
 });
 
-export const UserRow : FC<User> = (user: User) => {
+export const UserRow = ({avatar, first_name, last_name, id, email}: UserParams) => {
 	return (
 		<View style={styles.userRow}>
-			{(user.avatar !== undefined && user.avatar !== null)
-				? <Image style={styles.avatar} source={{uri:user.avatar}} ></Image>
+			{(avatar !== undefined && avatar !== null)
+				? <Image style={styles.avatar} source={{uri:avatar}} ></Image>
 				: (
 					<View style={styles.absentAvatar}>
 						<Text style={styles.absentAvatar.text}>?</Text>
 					</View>
 				)
 			}
-			<Text>Id: {user?.id}, name: {user?.first_name}, last name: {user?.last_name}</Text>
+			<Text>Id: {id}, name: {first_name}, last name: {last_name}</Text>
 		</View>
 	)
 }

@@ -1,5 +1,5 @@
 import UserRepository from "../repositories/UserRepository.ts";
-import User from "../entities/User.ts";
+import User, {UserParams} from "../entities/User.ts";
 
 export default class UserService {
     private userRepository: UserRepository;
@@ -8,7 +8,7 @@ export default class UserService {
         this.userRepository = new UserRepository();
     }
 
-    async getUsers() : Promise<User[]> {
+    async getUsers() : Promise<UserParams[]> {
         return await this.userRepository.getUsers();
     }
 }
